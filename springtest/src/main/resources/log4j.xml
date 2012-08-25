@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE log4j:configuration PUBLIC "log4j.dtd" "log4j.dtd">
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+    <appender name="FILE" class="org.apache.log4j.rolling.RollingFileAppender">
+    	<rollingPolicy class="org.apache.log4j.rolling.TimeBasedRollingPolicy">
+      		<param name="FileNamePattern" value="${catalina.base}/logs/springtest.%d{yyyy-MM-dd}.log.gz"/>
+      		<param name="ActiveFileName" value="${catalina.base}/logs/springtest.log"/>
+    	</rollingPolicy>
+        
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d{ISO8601} [%t] %p %c - %m%n"/>
+        </layout>
+    </appender>
+
+    <!-- Spring -->
+    <category name="org.springframework"><priority value="info"/></category>
+<!--    <category name="org.springframework.beans"><priority value="info"/></category>-->
+    <category name="org.springframework.transaction"><priority value="warn"/></category>
+
+    <!-- Hibernate -->
+    <category name="org.hibernate.SQL"> <priority value="warn"/></category> <!-- debug turns SQL output on -->
+    <category name="org.hibernate.type"><priority value="warn"/></category> <!-- trace turns output for "PreperedStatemets including bound values" on -->
+    <category name="org.hibernate">     <priority value="warn"/></category>
+    <!-- category name="org.hibernate.pretty.Printer"> <priority value="debug"/></category> -->
+
+    <!-- EHCache -->
+    <category name="net.sf.ehcache"> <priority value="info"/></category>
+
+    <category name="org.apache.commons.digester">  <priority value="warn"/></category>
+    <category name="org.apache.commons.beanutils"> <priority value="info"/></category>
+
+	<category name="org.apache.cxf"> <priority value="warn"/></category>
+	<category name="org.mortbay.log"> <priority value="info" /></category>
+
+    <root>
+        <priority value="debug"/>
+        <appender-ref ref="FILE"/>
+    </root>
+</log4j:configuration>
