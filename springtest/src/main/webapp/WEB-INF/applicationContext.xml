@@ -4,6 +4,6 @@
  
 <beans>
  
-
+<bean id="helloBean" class="at.lemme.App"></bean>
  
 </beans>
